@@ -30,7 +30,7 @@ while queue: #当队列不为空时候
 			with open('D:/work11'+'/'+filename+filetext,'wb') as f: #with as语句创建图片文件，存在D:/work11目录下
 				f.write(content) #写入图片内容
 	except:
-		continue
+		continue #出错后先跳过，继续抓取
 	#抓取这个页面中不在队列里的URL
 	get = re.compile('href="(.+?)"') #将正则表达式编译成Pattern对象，匹配以href=开头的url
 	for x in get.findall(response.text): #从返回的源代码字符串匹配正则表达式的字符串，以列表形式返回
