@@ -7,7 +7,7 @@ visited = set() #创建一个空集合
 queue.append(url) #把URL加到队列里
 cnt = 0 #进行计数
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/11.0'} #设置头部，伪装成浏览器
-proxies = {"http": "114.115.218.71:8118",}
+proxies = {"http": "114.115.218.71:8118",} #设置代理
 while queue: #当队列不为空时候
 	url = queue.popleft() #把队列左边第一个拿出来
 	visited.add(url) #拿出来之后新增到已访问的集合中
