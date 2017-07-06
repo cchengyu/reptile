@@ -6,14 +6,14 @@ queue = deque() #创建一个空队列，deque是高效实现插入和删除的�
 visited = set() #创建一个空集合
 queue.append(url) #把URL加到队列里
 cnt = 0 #进行计数
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/11.0'} #设置头部，伪装成浏览器
-proxies = {"http": "114.115.218.71:8118",} #设置代理
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'} #设置头部，伪装成浏览器
+proxies = {"http": "222.52.142.242:8080",} #使用代理ip进行爬取（因为ip被封，没有访问权限）
 while queue: #当队列不为空时候
 	url = queue.popleft() #把队列左边第一个拿出来
 	visited.add(url) #拿出来之后新增到已访问的集合中
 	print('已经抓取：' + str(cnt) + '正在抓取 <--- ' + url) #打印抓取了几个URL和正在抓取的URL
-	print(len(queue),queue)
-	print(len(visited),visited)
+	print(len(queue)) #打印等待爬取队列的长度
+	print(len(visited)) #打印已经爬取网站的长度
 	cnt += 1 #计数+1
 	#抓取URL里的图片
 	try: #使用try...except错误处理机制
@@ -29,11 +29,11 @@ while queue: #当队列不为空时候
 			#保存抓取下来的图片
 			linker = urllib.request.urlopen(link) #打开link链接，获取响应
 			content = linker.read() #读取响应内容
-			with open('D:/work11'+'/'+filename+filetext,'wb') as f: #with as语句创建图片文件，存在D:/work11目录下
+			with open('D:/work10'+'/'+filename+filetext,'wb') as f: #with as语句创建图片文件，存在D:/work11目录下
 				f.write(content) #写入图片内容
-		time.sleep(3) #设置睡眠时间
+		time.sleep(3)
 	except:
-		pass #出现错误不处理，pass
+		pass #出错后直接过，先不进行任何处理
 	#抓取这个页面中不在队列里的URL
 	get = re.compile('href="(.+?)"') #将正则表达式编译成Pattern对象，匹配以href=开头的url
 	for x in get.findall(response.text): #从返回的源代码字符串匹配正则表达式的字符串，以列表形式返回
