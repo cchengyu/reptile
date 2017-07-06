@@ -31,7 +31,7 @@ while queue: #当队列不为空时候
 			content = linker.read() #读取响应内容
 			with open('D:/work10'+'/'+filename+filetext,'wb') as f: #with as语句创建图片文件，存在D:/work11目录下
 				f.write(content) #写入图片内容
-		time.sleep(3)
+		time.sleep(3) #睡3秒，防止访问没有间隔被识破为爬虫，然后封ip，小心为上
 	except:
 		pass #出错后直接过，先不进行任何处理
 	#抓取这个页面中不在队列里的URL
